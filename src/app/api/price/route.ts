@@ -11,7 +11,7 @@ export async function GET() {
     console.log(getExecutablePath(os.platform()));
 
     const browser = await puppeteer.launch({
-        executablePath: getExecutablePath(os.platform()),
+        // executablePath: getExecutablePath(os.platform()),
         headless: false
     });
 
