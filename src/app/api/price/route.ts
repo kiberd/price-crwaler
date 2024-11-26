@@ -1,10 +1,10 @@
-import { NextRequest } from "next/server";
 import os from "os";
 import puppeteer from "puppeteer-core";
 import getExecutablePath from "../../../lib/get-excutable-path";
 import { commaString2Int } from "../../../lib/commaString2Int";
+import { Price } from "@/app/type/type";
 
-export async function GET(request: NextRequest) {
+export async function GET() {
 
     const models = ["BQ4422-161", "CZ0790-003"];
 
@@ -15,15 +15,15 @@ export async function GET(request: NextRequest) {
 
     const page = await browser.newPage();
 
-    const priceArry: any = [];
+    const priceArry = [];
 
     for(const model of models){
 
-        const price : any = {
+        const price: Price = {
             model: "",
             name: "",
-            kream : "",
-            nike : ""
+            kream : 1,
+            nike : 1
         };
 
         const kreamUrl = "https://kream.co.kr/search?keyword=" + model + "&tab=products";
@@ -31,14 +31,14 @@ export async function GET(request: NextRequest) {
 
         const kreamPriceSelector = "#__layout > div > div.layout__main.search-container > div.content-container > div.content > div > div.shop-content > div > div.search_result.md > div.search_result_list > div > div > a > div.price.price_area > p.amount";
         await page.waitForSelector(kreamPriceSelector);
-        let kreamPriceData: any = await page.$eval(
+        const kreamPriceData = await page.$eval(
             kreamPriceSelector, element => {
                 return element.textContent;
         });
 
         const kreamNameSelector = "#__layout > div > div.layout__main.search-container > div.content-container > div.content > div > div.shop-content > div > div.search_result.md > div.search_result_list > div > div > a > div.product_info_area > div.title > div > p.translated_name";
         await page.waitForSelector(kreamNameSelector);
-        let kreamNameData = await page.$eval(
+        const kreamNameData = await page.$eval(
             kreamNameSelector, element => {
                 return element.textContent;
         });
@@ -55,7 +55,7 @@ export async function GET(request: NextRequest) {
         await page.goto(nikeUrl);
         const nikeSelector = "#skip-to-products > div > div > figure > div > div.product-card__animation_wrapper > div > div > div > div";
         await page.waitForSelector(nikeSelector);
-        let nikeData: any = await page.$eval(
+        const nikeData = await page.$eval(
             nikeSelector, element => {
                 
                 return element.textContent;

@@ -1,18 +1,12 @@
 'use client'
 
-import { useState } from "react";
 import axios from "axios";
 import * as XLSX from 'xlsx'
-// import XLSX from 'xlsx'; 
-
 
 
 export default function Home() {
 
-
   const url = '/api/price';
-
-  const [priceList, setPriceList] = useState();
 
   const exportExcel = () => {
     axios.get(url)
@@ -34,7 +28,6 @@ export default function Home() {
 
   return (
     <div>
-
       <button onClick={exportExcel} >크롤링 시작</button>
     </div>
   );
