@@ -1,5 +1,5 @@
 import os from "os";
-import puppeteer from "puppeteer-core";
+import puppeteer from "puppeteer";
 import getExecutablePath from "../../../lib/get-excutable-path";
 import { commaString2Int } from "../../../lib/commaString2Int";
 import { Price } from "@/app/type/type";
@@ -7,6 +7,8 @@ import { Price } from "@/app/type/type";
 export async function GET() {
 
     const models = ["BQ4422-161", "CZ0790-003"];
+
+    console.log(getExecutablePath(os.platform()));
 
     const browser = await puppeteer.launch({
         executablePath: getExecutablePath(os.platform()),
