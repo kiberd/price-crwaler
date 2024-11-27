@@ -1,21 +1,44 @@
-import os from "os";
+// import os from "os";
+
 import puppeteer from "puppeteer";
-import getExecutablePath from "../../../lib/get-excutable-path";
+// import getExecutablePath from "../../../lib/get-excutable-path";
 import { commaString2Int } from "../../../lib/commaString2Int";
 import { Price } from "@/app/type/type";
+
+import chromium from '@sparticuz/chromium';
+import puppeteerCore from 'puppeteer-core';
+
+
 
 export async function GET() {
 
     const models = ["BQ4422-161", "CZ0790-003"];
 
-    console.log(getExecutablePath(os.platform()));
+    // const browser = await puppeteer.launch({
+    //     // executablePath: getExecutablePath(os.platform()),
+    //     headless: false
+    // });
 
-    const browser = await puppeteer.launch({
-        // executablePath: getExecutablePath(os.platform()),
-        headless: false
-    });
+    
+    let browser;
 
-    const page = await browser.newPage();
+    if (process.env.NODE_ENV === 'production') {
+
+        browser = await puppeteerCore.launch({
+            args: chromium.args,
+            defaultViewport: chromium.defaultViewport,
+            executablePath: await chromium.executablePath(),
+            headless: chromium.headless,
+        });
+    } else {
+        browser = await puppeteer.launch({
+            headless: false,
+        });
+    }
+
+
+    /* eslint-disable */
+    const page: any = await browser.newPage();
 
     const priceArry = [];
 
@@ -33,15 +56,17 @@ export async function GET() {
 
         const kreamPriceSelector = "#__layout > div > div.layout__main.search-container > div.content-container > div.content > div > div.shop-content > div > div.search_result.md > div.search_result_list > div > div > a > div.price.price_area > p.amount";
         await page.waitForSelector(kreamPriceSelector);
+        /* eslint-disable */
         const kreamPriceData = await page.$eval(
-            kreamPriceSelector, element => {
+            kreamPriceSelector, (element: any) => {
                 return element.textContent;
         });
 
         const kreamNameSelector = "#__layout > div > div.layout__main.search-container > div.content-container > div.content > div > div.shop-content > div > div.search_result.md > div.search_result_list > div > div > a > div.product_info_area > div.title > div > p.translated_name";
         await page.waitForSelector(kreamNameSelector);
+        /* eslint-disable */
         const kreamNameData = await page.$eval(
-            kreamNameSelector, element => {
+            kreamNameSelector, (element: any) => {
                 return element.textContent;
         });
 
@@ -57,14 +82,14 @@ export async function GET() {
         await page.goto(nikeUrl);
         const nikeSelector = "#skip-to-products > div > div > figure > div > div.product-card__animation_wrapper > div > div > div > div";
         await page.waitForSelector(nikeSelector);
+        /* eslint-disable */
         const nikeData = await page.$eval(
-            nikeSelector, element => {
+            nikeSelector, (element: any) => {
                 
                 return element.textContent;
         });
 
         price.nike = commaString2Int(nikeData?.split(' ').join('').slice(0, -1));
-
         priceArry.push(price);
 
         
@@ -72,9 +97,6 @@ export async function GET() {
 
 
     await browser.close();
-
-    
     return new Response(JSON.stringify(priceArry), { status: 200 });
-
     
 }
