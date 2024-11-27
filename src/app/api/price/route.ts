@@ -19,7 +19,6 @@ export async function GET() {
     //     headless: false
     // });
 
-    
     let browser;
 
     if (process.env.NODE_ENV === 'production') {
