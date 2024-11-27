@@ -1,13 +1,11 @@
-// import os from "os";
 
-import puppeteer from "puppeteer";
-// import getExecutablePath from "../../../lib/get-excutable-path";
+
+import getExecutablePath from "../../../lib/get-excutable-path";
 import { commaString2Int } from "../../../lib/commaString2Int";
 import { Price } from "@/app/type/type";
-
 import chromium from '@sparticuz/chromium';
-import puppeteerCore from 'puppeteer-core';
-
+import puppeteer from "puppeteer-core";
+import os from "os";
 
 
 export async function GET() {
@@ -19,21 +17,14 @@ export async function GET() {
     //     headless: false
     // });
 
-    let browser;
-
-    if (process.env.NODE_ENV === 'production') {
-
-        browser = await puppeteerCore.launch({
-            args: chromium.args,
-            defaultViewport: chromium.defaultViewport,
-            executablePath: await chromium.executablePath(),
-            headless: chromium.headless,
-        });
-    } else {
-        browser = await puppeteer.launch({
-            headless: false,
-        });
-    }
+     /* eslint-disable */
+    const executablePath: any = await chromium.executablePath() || getExecutablePath(os.platform());
+    console.log(executablePath);
+    const browser = await puppeteer.launch({
+        executablePath: executablePath,
+        args: chromium.args,
+        headless: false,
+      })
 
 
     /* eslint-disable */
