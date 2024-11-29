@@ -4,7 +4,7 @@ import { NextRequest, NextResponse } from 'next/server'
 export const GET = async (request: NextRequest) => {
   // 쿼리 파라미터에서 데이터 가져오기
   const searchParams = new URL(request.url).searchParams
-  const searchTerm = searchParams.get('searchTerm') || '' // searchTerm 매개변수 추출
+  // const searchTerm = searchParams.get('searchTerm') || '' // searchTerm 매개변수 추출
 
   try {
     // 외부 API로 통신
