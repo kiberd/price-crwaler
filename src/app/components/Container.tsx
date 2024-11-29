@@ -8,10 +8,18 @@ import Upload from './Upload';
 const Container = () => {
 
     const url = "https://ee28-223-131-171-229.ngrok-free.app/price";
+    // const url = "/price"
+    // const url = "http://localhost:4000/price"
     const { isLoading, error, data, refetch } = useQuery({
         queryKey: ['priceData'],
         queryFn: () =>
-            fetch(url).then((res) =>
+            fetch(url, {
+                method: "GET",
+                headers: {
+                    'Content-Type': `application/json`,
+                    'ngrok-skip-browser-warning': '69420',
+                }
+            }).then((res) =>
                 res.json(),
             ),
         enabled: false
