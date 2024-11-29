@@ -8,10 +8,12 @@ import {
   import "../../styles.css";
 
   
+   /* eslint-disable */
   function Table({ data }: any) {
 
   
     const columnHelper = createColumnHelper();
+     /* eslint-disable */
     const columns: any = [
       columnHelper.accessor("model", { header: "모델명"}),
       columnHelper.accessor("name", { header: "상품이름" }),

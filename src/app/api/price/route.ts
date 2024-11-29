@@ -1,14 +1,14 @@
 import { NextRequest } from "next/server";
 
-import getExecutablePath from "../../../lib/get-excutable-path";
+
 import { commaString2Int } from "../../../lib/commaString2Int";
-import { Price } from "@/app/type/type";
-import chromium from '@sparticuz/chromium';
+
+
 import puppeteer from "puppeteer";
-import os from "os";
 
 
-export async function GET(request: NextRequest) {
+
+export async function GET() {
 
     // const searchParams = request.nextUrl.searchParams;
     // const models = searchParams.get("url");

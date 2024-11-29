@@ -1,9 +1,6 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Button } from '@headlessui/react'
 import Table from './Table';
-import axios from "axios";
-import * as XLSX from 'xlsx';
-import { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import Upload from './Upload';
 
@@ -30,7 +27,7 @@ const Container = () => {
 
             <div className="p-3 bg-slate-300">
 
-                
+
                 <Button onClick={() => refetch()} className="mx-4 inline-flex items-center gap-2 rounded-md bg-gray-700 py-1.5 px-3 text-sm/6 font-semibold text-white shadow-inner shadow-white/10 focus:outline-none data-[hover]:bg-gray-600 data-[open]:bg-gray-700 data-[focus]:outline-1 data-[focus]:outline-white">
                     Start Crwaling
                 </Button>

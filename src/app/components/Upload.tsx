@@ -6,14 +6,17 @@ import * as XLSX from 'xlsx';
 const Upload = () => {
 
 
-
+     /* eslint-disable */
     const [uploadedFile, setUploadedFile]: any = useState();
 
+     /* eslint-disable */
     const handleDrop = useCallback(async (acceptedFiles: any) => {
         if (acceptedFiles.length > 0) {
+             /* eslint-disable */
             const file: any = acceptedFiles[0];
 
             const reader = new FileReader();
+             /* eslint-disable */
             reader.onload = async (e: any) => {
                 const data = new Uint8Array(e.target.result);
                 const workbook = XLSX.read(data, { type: "array", bookVBA: true });

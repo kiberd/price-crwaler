@@ -2,8 +2,7 @@
 
 import {
   QueryClient,
-  QueryClientProvider,
-  useQuery,
+  QueryClientProvider
 } from '@tanstack/react-query'
 
 import TopBar from "./components/TopBar";
