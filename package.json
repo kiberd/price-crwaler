@@ -10,10 +10,14 @@
     "postinstall": "npx puppeteer browsers install chrome"
   },
   "dependencies": {
+    "@headlessui/react": "^2.2.0",
     "@sparticuz/chromium": "^131.0.1",
+    "@tanstack/react-query": "^5.61.5",
+    "@tanstack/react-table": "^8.20.5",
     "axios": "^1.7.8",
     "next": "15.0.3",
     "os": "^0.1.2",
+    "puppeteer": "^23.9.0",
     "puppeteer-core": "^23.9.0",
     "react": "19.0.0-rc-66855b96-20241106",
     "react-dom": "19.0.0-rc-66855b96-20241106",
