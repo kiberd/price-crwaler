@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { NextRequest, NextResponse } from 'next/server'
+import { NextResponse } from 'next/server'
 
 export const GET = async () => {
   // 쿼리 파라미터에서 데이터 가져오기
