@@ -34,7 +34,18 @@ const Upload = () => {
 
 
     useEffect(() => {
-        console.log(uploadedFile);
+        
+        if (uploadedFile){
+            /* eslint-disable */
+            const modelArry: any = [];
+            const dataArry = uploadedFile.jsonData;
+            /* eslint-disable */
+            dataArry.map((data: any, index: any) => {
+               if (index != 0) modelArry.push(data["__EMPTY_1"]);
+            });
+
+        }
+
     }, [uploadedFile])
 
 
