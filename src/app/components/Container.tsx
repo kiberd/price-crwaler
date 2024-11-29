@@ -1,37 +1,22 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Button } from '@headlessui/react'
 import Table from './Table';
 import { useQuery } from '@tanstack/react-query';
 import Upload from './Upload';
 
-
 const Container = () => {
-
-    const url = "https://ee28-223-131-171-229.ngrok-free.app/price";
-    // const url = "/price"
-    // const url = "http://localhost:4000/price"
+    const url = "/api"
+    
     const { isLoading, error, data, refetch } = useQuery({
         queryKey: ['priceData'],
         queryFn: () =>
-            fetch(url, {
-                method: "GET",
-                headers: {
-                    'Content-Type': `application/json`,
-                    'ngrok-skip-browser-warning': '69420',
-                }
-            }).then((res) =>
+            fetch(url).then((res) =>
                 res.json(),
             ),
         enabled: false
     });
 
-    useEffect(() => {
-        console.log(data);
-    } ,[data])
-
-
     if (error) return 'An error has occurred: ' + error.message;
-
 
     return (
         <div className="container max-w-[90vw] mx-auto  mt-5">
