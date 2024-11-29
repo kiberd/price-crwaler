@@ -1,9 +1,9 @@
 import axios from 'axios'
 import { NextRequest, NextResponse } from 'next/server'
 
-export const GET = async (request: NextRequest) => {
+export const GET = async () => {
   // 쿼리 파라미터에서 데이터 가져오기
-  const searchParams = new URL(request.url).searchParams
+  // const searchParams = new URL(request.url).searchParams
   // const searchTerm = searchParams.get('searchTerm') || '' // searchTerm 매개변수 추출
 
   try {
