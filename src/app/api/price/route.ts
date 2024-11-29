@@ -1,11 +1,6 @@
-import { NextRequest } from "next/server";
-
 
 import { commaString2Int } from "../../../lib/commaString2Int";
-
-
 import puppeteer from "puppeteer";
-
 
 
 export async function GET() {
