@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Button } from '@headlessui/react'
 import Table from './Table';
 import { useQuery } from '@tanstack/react-query';
@@ -7,7 +7,7 @@ import Upload from './Upload';
 
 const Container = () => {
 
-    const url = '/api/price';
+    const url = "https://ee28-223-131-171-229.ngrok-free.app/price";
     const { isLoading, error, data, refetch } = useQuery({
         queryKey: ['priceData'],
         queryFn: () =>
@@ -16,6 +16,11 @@ const Container = () => {
             ),
         enabled: false
     });
+
+    useEffect(() => {
+        console.log(data);
+    } ,[data])
+
 
     if (error) return 'An error has occurred: ' + error.message;
 
